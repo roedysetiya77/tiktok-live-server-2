@@ -1,0 +1,12 @@
+{
+  "name": "    tiktok-live-server-2",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0"
+  }
+}
