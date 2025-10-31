@@ -1,9 +1,16 @@
-import express from "express";
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+const { connect } = require('tiktok-live-connector');
+
 const app = express();
+const server = http.createServer(app);
+const port = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Bot is running!");
-});
+app.use(express.static('public'));
+app.get('/healthz', (req,res) => res.send('ok'));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const io = new Server(server, { cors: { origin: process.env.ALLOWED_ORIGIN || '*' } });
+// (tambahkan logic tiktok-live-connector & socket handlers di sini)
+
+server.listen(port, ()=> console.log('Listening on', port));
